@@ -1,18 +1,5 @@
 #!/bin/bash
 
-# Define variables
-
-# if [ -z "$1" ] || [ -z "$2" ]; then
-#   echo "Usage: $0 <path_to_content_directory> <organization>/<workspace>"
-#   exit 0
-# fi
-
-# CONTENT_DIRECTORY="$1"
-# ORG_NAME="$(cut -d'/' -f1 <<<"$2")"
-# WORKSPACE_NAME="$(cut -d'/' -f2 <<<"$2")"
-
-# Create the upload file
-
 UPLOAD_FILE_NAME="./content-$(date +%s).tar.gz"
 tar -zcvf "$UPLOAD_FILE_NAME" -C "$CONTENT_DIRECTORY" .
 
@@ -55,11 +42,3 @@ curl \
   --request PUT \
   --data-binary @"$UPLOAD_FILE_NAME" \
   $UPLOAD_URL
-
-# Clean Up
-
-# rm "$UPLOAD_FILE_NAME"
-# rm ./create_config_version.json
-
-
-
