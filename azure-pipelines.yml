@@ -1,0 +1,16 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- bash: ./tfc-api.sh
+  displayName: 'TFC API Script'
+  failOnStderr: 'true'
+  env:
+    TFC_TOKEN: $(TFC_TOKEN)
+    CONTENT_DIRECTORY: $(CONTENT_DIRECTORY)
+    ORG_NAME: $(ORG_NAME)
+    WORKSPACE_NAME: $(WORKSPACE_NAME)
+
