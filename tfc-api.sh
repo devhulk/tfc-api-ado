@@ -4,6 +4,7 @@
 UPLOAD_FILE_NAME="./tf-$(date +%s).tar.gz"
 
 tar -zcvf "$UPLOAD_FILE_NAME" -C "$CONTENT_DIRECTORY" .
+echo $UPLOAD_FILE_NAME
 
 echo "Getting workspace ID"
 
@@ -17,6 +18,7 @@ WORKSPACE_ID=($(curl \
   | jq -r '.data.id'))
 
 
+echo $WORKSPACE_ID
 echo "Creating Configuration Version"
 
 # Step 3 - Create config_version. This tracks your terraform configuration version.
@@ -37,6 +39,7 @@ UPLOAD_URL=($(curl \
   | jq -r '.data.attributes."upload-url"'))
 
 # Upload Terraform Config
+echo $UPLAD_URL
 
 echo "Uploading Terraform Config"
 
