@@ -28,6 +28,7 @@ echo '{"data":{"type":"configuration-versions"}}' > ./create_config_version.json
 
 echo "Getting Upload URL for Config Version"
 
+
 UPLOAD_URL=($(curl \
   -s \
   -S \
