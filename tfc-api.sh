@@ -39,7 +39,7 @@ UPLOAD_URL=($(curl \
   | jq -r '.data.attributes."upload-url"'))
 
 # Upload Terraform Config
-echo $UPLAD_URL
+echo UPLOAD_URL
 
 echo "Uploading Terraform Config"
 
