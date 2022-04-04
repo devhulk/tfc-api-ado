@@ -1,10 +1,13 @@
 #!/bin/bash
 
-UPLOAD_FILE_NAME="./content-$(date +%s).tar.gz"
+# Step 1 - Create upload file (is an archive file ending in .tar.gz)
+UPLOAD_FILE_NAME="./tf-$(date +%s).tar.gz"
+
 tar -zcvf "$UPLOAD_FILE_NAME" -C "$CONTENT_DIRECTORY" .
 
 echo "Getting workspace ID"
 
+# Step 2 - Get the Workspace ID. The workspace is what will run our TF code.
 WORKSPACE_ID=($(curl \
   -s \
   -S \
@@ -16,7 +19,9 @@ WORKSPACE_ID=($(curl \
 
 echo "Creating Configuration Version"
 
-echo '{"data":{"type":"configuration-versions"}}' > ./create_config_version.json
+# Step 3 - Create config_version. This tracks your terraform configuration version.
+
+echo '{"data":{"type":"configuration-versions", "attributes": "auto-queue-runs": true}}' > ./create_config_version.json
 
 
 echo "Getting Upload URL for Config Version"
